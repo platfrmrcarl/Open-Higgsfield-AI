@@ -14,6 +14,8 @@
     "build:studio": "cd packages/studio && npm run build",
     "setup": "npm install && npm run build:studio",
     "vite:dev": "vite",
+    "gemini": "vite --mode gemini",
+    "gen": "node scripts/gemini-image.mjs",
     "vite:build": "vite build",
     "electron:build": "vite build && electron-builder --mac",
     "electron:build:win": "vite build && electron-builder --win",

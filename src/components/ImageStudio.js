@@ -1,4 +1,5 @@
 import { kie } from '../lib/kie.js';
+import { GEMINI_MODE } from '../lib/gemini.js';
 import {
     t2iModels, getAspectRatiosForModel, getResolutionsForModel, getQualityFieldForModel,
     i2iModels, getAspectRatiosForI2IModel, getResolutionsForI2IModel, getQualityFieldForI2IModel,
@@ -1064,7 +1065,7 @@ export function ImageStudio() {
 
         const apiKey = localStorage.getItem('kie_key');
         const cfLogged = !!localStorage.getItem('cf_backend');
-        if (!apiKey && !cfLogged) {
+        if (!apiKey && !cfLogged && !GEMINI_MODE) {
             AuthModal(() => generateBtn.click());
             return;
         }

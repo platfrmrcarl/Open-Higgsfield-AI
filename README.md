@@ -345,3 +345,10 @@ Built with [Muapi.ai](https://muapi.ai) — the unified API for AI image and vid
 
 ---
 *Looking for a free Higgsfield AI alternative? Open Higgsfield AI is an open-source AI image and video generation studio and Higgsfield AI replacement that you can self-host, customize, and extend.*
+
+## Gemini Nano Banana (local game-asset mode)
+
+Put `GEMINI_API_KEY=...` in `.env.local` (gitignored). Images are saved to `output/`.
+
+- **Studio UI:** `npm run gemini` — skips sign-in; Image Studio routes to Gemini (`nano-banana` → `gemini-2.5-flash-image`, `nano-banana-pro` → `gemini-3-pro-image-preview`). Uploaded images are sent as references for edits.
+- **CLI:** `npm run gen -- "pixel art knight sprite, side view, solid magenta background" --out output/knight.png [--aspect 1:1] [--pro] [--size 2K] [--ref style.png] [--count 4]`

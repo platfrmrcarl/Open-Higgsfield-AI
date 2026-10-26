@@ -10,6 +10,8 @@ const cfPath = () => {
     return cf;
 };
 
+import { GEMINI_MODE, gemini } from './gemini.js';
+
 export class KieClient {
     constructor() {
         // Dev requests go through the vite proxy ('/api' → https://api.kie.ai)
@@ -238,6 +240,7 @@ export class KieClient {
      * Generates an image (Text-to-Image or Image-to-Image)
      */
     async generateImage(params) {
+        if (GEMINI_MODE) return gemini.generateImage(params);
         const bridge = cfPath();
         if (bridge) return bridge.generateImage(params);
         const modelInfo = this._imageModel(params.model);
@@ -254,6 +257,7 @@ export class KieClient {
      * Generates an image using an Image-to-Image model.
      */
     async generateI2I(params) {
+        if (GEMINI_MODE) return gemini.generateI2I(params);
         const bridge = cfPath();
         if (bridge) return bridge.generateI2I(params);
         const settings = this._editModel(params.model);
@@ -386,6 +390,7 @@ export class KieClient {
      * Note: uploaded files expire after 24 hours.
      */
     async uploadFile(file) {
+        if (GEMINI_MODE) return gemini.uploadFile(file);
         const bridge = cfPath();
         if (bridge) return bridge.uploadFile(file);
         const key = this.getKey();

@@ -2,6 +2,7 @@ import './style.css';
 import { Header } from './components/Header.js';
 import { ImageStudio } from './components/ImageStudio.js';
 import { BackendModal } from './components/BackendModal.js';
+import { GEMINI_MODE } from './lib/gemini.js';
 
 const app = document.querySelector('#app');
 let contentArea;
@@ -99,7 +100,7 @@ function bootApp() {
 // Boot sequence: check the session first, render the app only when
 // signed in, otherwise show nothing but the sign-in screen.
 showCheckingScreen();
-hasValidSession().then((ok) => {
+(GEMINI_MODE ? Promise.resolve(true) : hasValidSession()).then((ok) => {
   if (ok) bootApp();
   else showSignInGate();
 });
